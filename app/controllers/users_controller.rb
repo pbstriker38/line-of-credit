@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.credit_limit = Money.new(100000, 'USD')
 
     respond_to do |format|
       if @user.save
