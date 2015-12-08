@@ -40,6 +40,11 @@ RSpec.describe UsersController, type: :controller do
         expect(assigns(:user)).to be_persisted
       end
 
+      it "sets the users credit limit to $1000" do
+        post :create, {:user => valid_attributes}, valid_session
+        expect(assigns(:user).credit_limit).to eq(Money.new(100000, 'USD'))
+      end
+
       it "redirects to the root_path" do
         post :create, {:user => valid_attributes}, valid_session
         expect(response).to redirect_to(root_path)
