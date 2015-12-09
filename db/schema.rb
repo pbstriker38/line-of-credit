@@ -14,10 +14,12 @@
 ActiveRecord::Schema.define(version: 20151208220917) do
 
   create_table "transactions", force: :cascade do |t|
-    t.integer "amount_cents",     default: 0,     null: false
-    t.string  "amount_currency",  default: "USD", null: false
-    t.string  "transaction_type"
-    t.integer "user_id"
+    t.integer  "amount_cents",     default: 0,     null: false
+    t.string   "amount_currency",  default: "USD", null: false
+    t.string   "transaction_type"
+    t.integer  "user_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "users", force: :cascade do |t|

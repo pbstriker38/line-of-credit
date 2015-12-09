@@ -4,6 +4,8 @@ class CreateTransactions < ActiveRecord::Migration
       t.money :amount
       t.string :transaction_type
       t.integer :user_id
+
+      t.timestamps null: false
     end
   end
 end
