@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208215237) do
+ActiveRecord::Schema.define(version: 20151208220917) do
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "amount_cents",     default: 0,     null: false
+    t.string  "amount_currency",  default: "USD", null: false
+    t.string  "transaction_type"
+    t.integer "user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"

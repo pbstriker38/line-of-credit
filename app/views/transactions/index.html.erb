@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">Account Summary</div>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>Balance</td>
+            <td><%= humanized_money_with_symbol(current_user.balance) %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">Transactions</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Amount</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @transactions.each do |transaction| %>
+            <tr>
+              <td><%= humanized_money_with_symbol(transaction.amount) %></td>
+              <td><%= transaction.transaction_type %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

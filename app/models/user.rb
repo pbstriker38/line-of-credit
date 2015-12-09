@@ -4,4 +4,6 @@ class User < ActiveRecord::Base
   monetize :credit_limit_cents
   monetize :balance_cents
 
+  has_many :transactions
+
 end
