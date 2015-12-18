@@ -9,6 +9,9 @@ class TransactionsController < ApplicationController
   def create
 
     @transaction = Transaction.new(transaction_params)
+    if @transaction.transaction_type == 'withdraw'
+      @transaction.amount = @transaction.amount.amount * BigDecimal.new('-1')
+    end
     @transaction.user_id = current_user.id
 
     respond_to do |format|
