@@ -41,6 +41,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara', '~> 2.5.0'
+  gem 'timecop', '~> 0.8.0'
 end
 
 group :development do
