@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   def set_up_user
     self.credit_limit = Money.new(100000)
     self.balance = Money.new(0)
+    self.period_start = Time.zone.now.beginning_of_day
   end
 
   # Balance starts at 0 and goes negative when you borrow money.
