@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
 
-  resources :transactions, only: [:index, :new, :create] do
+  resources :transactions, only: [:index, :create] do
     collection do
       get :withdraw
       get :pay

@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:index]
 
   # GET /users/new
   def new
