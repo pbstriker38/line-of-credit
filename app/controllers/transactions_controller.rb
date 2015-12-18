@@ -1,4 +1,6 @@
 class TransactionsController < ApplicationController
+  include InterestHelper
+
   before_action :require_login
 
   def index
@@ -16,7 +18,11 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.amount > Money.new(0, 'USD')
+      if @transaction.amount != Money.new(0)
         if @transaction.save
+
+          calculate_interest(current_user, @transaction)
+
           format.html { redirect_to transactions_path, notice: 'Transaction was successfully completed.' }
         end
       else
