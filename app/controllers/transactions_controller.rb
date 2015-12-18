@@ -4,7 +4,9 @@ class TransactionsController < ApplicationController
   before_action :require_login
 
   def index
-    @transactions = current_user.transactions
+    @transactions = current_user
+                      .transactions
+                      .where(transaction_type: ['withdraw', 'pay', 'period interest'])
   end
 
   # POST /transactions
