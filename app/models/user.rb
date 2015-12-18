@@ -6,6 +6,13 @@ class User < ActiveRecord::Base
 
   has_many :transactions
 
+  before_create :set_up_user
+
+  def set_up_user
+    self.credit_limit = Money.new(100000)
+    self.balance = Money.new(0)
+  end
+
   # Balance starts at 0 and goes negative when you borrow money.
   # When updating the balance you should pass in a negative amount
   # for a withdrawal.
