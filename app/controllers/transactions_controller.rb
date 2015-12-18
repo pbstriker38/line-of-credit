@@ -23,6 +23,7 @@ class TransactionsController < ApplicationController
 
           calculate_interest(current_user, @transaction)
 
+          current_user.update_balance(@transaction.amount)
           format.html { redirect_to transactions_path, notice: 'Transaction was successfully completed.' }
         end
       else
