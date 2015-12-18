@@ -17,8 +17,7 @@ class TransactionsController < ApplicationController
     @transaction.user_id = current_user.id
 
     respond_to do |format|
-      if @transaction.amount > Money.new(0, 'USD')
-      if @transaction.amount != Money.new(0)
+      if (@transaction.amount != Money.new(0)) && current_user.valid_transaction?(@transaction.amount)
         if @transaction.save
 
           calculate_interest(current_user, @transaction)
@@ -27,7 +26,7 @@ class TransactionsController < ApplicationController
           format.html { redirect_to transactions_path, notice: 'Transaction was successfully completed.' }
         end
       else
-        format.html { redirect_to :back, flash: {error: 'An amount is required'} }
+        format.html { redirect_to :back, flash: {error: 'Invalid Transaction'} }
       end
     end
   end

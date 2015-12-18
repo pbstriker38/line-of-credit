@@ -14,4 +14,16 @@ class User < ActiveRecord::Base
     self.balance += amount
     self.save
   end
+
+  def valid_transaction?(amount)
+    if self.balance + amount > Money.new(0)
+      return false
+    end
+
+    if self.credit_limit + amount < Money.new(0)
+      return false
+    end
+
+    return true
+  end
 end
