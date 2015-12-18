@@ -6,7 +6,7 @@
         <tbody>
           <tr>
             <td>Balance</td>
-            <td><%= humanized_money_with_symbol(current_user.balance) %></td>
+            <td><%= humanized_money_with_symbol(-current_user.balance) %></td>
           </tr>
         </tbody>
       </table>
