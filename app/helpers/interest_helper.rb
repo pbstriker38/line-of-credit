@@ -11,7 +11,9 @@ module InterestHelper
 
     interest = balance * apr / days_in_year * days_in_period
 
-    Transaction.create(amount: interest, transaction_type: 'interest', user_id: user.id)
+    if interest > BigDecimal.new('0')
+      Transaction.create(amount: interest, transaction_type: 'interest', user_id: user.id)
+    end
   end
 
   def days_since_last_transaction(user, transaction)
