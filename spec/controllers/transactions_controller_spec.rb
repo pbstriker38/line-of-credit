@@ -11,26 +11,20 @@ RSpec.describe TransactionsController, type: :controller do
     transaction_type: 'withdraw'
   }}
 
+  let(:current_user) { User.create(first_name: 'Bill', last_name: 'Miller', email: 'bill.miller@example.com', password: 'password') }
+
+  before do
+    sign_in_as(current_user)
+  end
+
   describe "GET #index" do
-    let(:current_user) { double('current_user', id: 1) }
-
-    before do
-      allow(controller).to receive(:current_user).and_return(current_user)
-    end
-
     it "gets the transactions for the current_user" do
-      expect(current_user).to receive(:transactions)
+      expect(current_user).to receive_message_chain(:transactions, :where)
       get :index
     end
   end
 
   describe "POST #create" do
-    let(:current_user) { double('current_user', id: 1) }
-
-    before do
-      allow(controller).to receive(:current_user).and_return(current_user)
-    end
-
     context "with valid params" do
       it "creates a new transaction" do
         expect {
